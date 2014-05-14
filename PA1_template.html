@@ -348,6 +348,8 @@ The mean of the steps per day is:</p>
 <pre><code class="r">activ.fil$wday &lt;- &quot;weekday&quot;
 activ.fil[weekdays(activ.fil$dateAsDate, abbreviate = T) %in% c(&quot;Sun&quot;, &quot;Sat&quot;), 
     &quot;wday&quot;] &lt;- &quot;weekend&quot;
+# now transform in a factor as requested
+activ.fil$wday &lt;- as.factor(activ.fil$wday)
 
 byInterv.fil &lt;- ddply(activ.fil, ~interval + wday, summarise, meanStepsInt = mean(steps))
 </code></pre>

@@ -206,6 +206,8 @@ First, I prepare the data frame *active.fil* with an additional field that disti
 activ.fil$wday <- "weekday"
 activ.fil[weekdays(activ.fil$dateAsDate, abbreviate = T) %in% c("Sun", "Sat"), 
     "wday"] <- "weekend"
+# now transform in a factor as requested
+activ.fil$wday <- as.factor(activ.fil$wday)
 
 byInterv.fil <- ddply(activ.fil, ~interval + wday, summarise, meanStepsInt = mean(steps))
 ```
